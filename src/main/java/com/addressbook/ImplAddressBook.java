@@ -76,7 +76,7 @@ public class ImplAddressBook implements IAddressBook {
         return 1;
     }
 
-    public int editForAddress(String phoneNum ,String state, String city, String address, int zipcode) throws IOException {
+    public int editForAddress(String phoneNum, String state, String city, String address, int zipcode) throws IOException {
         readFromJson(fileName);
         int index = searchPersonByPhoneNumber(phoneNum);
         addressBookModel.getPersonModels().get(index).getAddress().setState(state);
@@ -102,9 +102,9 @@ public class ImplAddressBook implements IAddressBook {
                 Class cls1 = addressBookModel.getPersonModels().get(j).getClass();
                 Method methodcall = cls1.getDeclaredMethod(methodName);
                 T value1 = (T) methodcall.invoke(addressBookModel.getPersonModels().get(j));
-                Class cls2 = addressBookModel.getPersonModels().get(j+1).getClass();
+                Class cls2 = addressBookModel.getPersonModels().get(j + 1).getClass();
                 Method methodcall1 = cls2.getDeclaredMethod(methodName);
-                T value2 = (T) methodcall.invoke(addressBookModel.getPersonModels().get(j+1));
+                T value2 = (T) methodcall.invoke(addressBookModel.getPersonModels().get(j + 1));
                 if (value1.compareTo(value2) > 0) {
                     PersonModel tempObj = addressBookModel.getPersonModels().get(j);
                     addressBookModel.getPersonModels().set(j, addressBookModel.getPersonModels().get(j + 1));
@@ -123,9 +123,9 @@ public class ImplAddressBook implements IAddressBook {
                 Class cls1 = addressBookModel.getPersonModels().get(j).getAddress().getClass();
                 Method methodcall = cls1.getDeclaredMethod(methodName);
                 T value1 = (T) methodcall.invoke(addressBookModel.getPersonModels().get(j).getAddress());
-                Class cls2 = addressBookModel.getPersonModels().get(j+1).getAddress().getClass();
+                Class cls2 = addressBookModel.getPersonModels().get(j + 1).getAddress().getClass();
                 Method methodcall1 = cls2.getDeclaredMethod(methodName);
-                T value2 = (T) methodcall.invoke(addressBookModel.getPersonModels().get(j+1).getAddress());
+                T value2 = (T) methodcall.invoke(addressBookModel.getPersonModels().get(j + 1).getAddress());
                 if (value1.compareTo(value2) > 0) {
                     PersonModel tempObj = addressBookModel.getPersonModels().get(j);
                     addressBookModel.getPersonModels().set(j, addressBookModel.getPersonModels().get(j + 1));
@@ -135,5 +135,21 @@ public class ImplAddressBook implements IAddressBook {
         }
         writeToJsonFile(addressBookModel);
         return 1;
+    }
+
+    public int printInFormat() throws IOException {
+        readFromJson(fileName);
+        System.out.println("FirstName  LastName  PhoneNumber  State  City  Address  Zipcode   ");
+        for (int i = 0; i < addressBookModel.getPersonModels().size() - 1; i++) {
+            System.out.println(addressBookModel.getPersonModels().get(i).getFirstName()+
+                               "\t\t"+addressBookModel.getPersonModels().get(i).getLastName()+
+                               "\t"+addressBookModel.getPersonModels().get(i).getPhoneNum()+
+                               "\t"+addressBookModel.getPersonModels().get(i).getAddress().getState()+
+                               "\t"+addressBookModel.getPersonModels().get(i).getAddress().getCity()+
+                               "\t"+addressBookModel.getPersonModels().get(i).getAddress().getAddress()+
+                                "\t\t"+addressBookModel.getPersonModels().get(i).getAddress().getZipcode());
+        }
+        return 1;
+
     }
 }

@@ -79,4 +79,11 @@ public class AddressBookTest {
         int result = implAddressBook.sortFunctionForAddressModel("getZipcode");
         Assert.assertEquals(1,result);
     }
+
+    @Test
+    public void givenAddressBook_wantToPrintFormat_shouldGetPrint() throws IOException {
+        ImplAddressBook implAddressBook = new ImplAddressBook();
+        int result = implAddressBook.printInFormat();
+        Assert.assertEquals(1,result);
+    }
 }

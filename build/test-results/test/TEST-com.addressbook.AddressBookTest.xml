@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.addressbook.AddressBookTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-12-05T12:29:52" hostname="admin1-desktop" time="0.171">
+<testsuite name="com.addressbook.AddressBookTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-12-05T13:11:10" hostname="admin1-desktop" time="0.16">
   <properties/>
-  <testcase name="givenAddressBook_wantToSortByZipCode_shouldGetSort" classname="com.addressbook.AddressBookTest" time="0.171"/>
-  <system-out><![CDATA[]]></system-out>
+  <testcase name="givenAddressBook_wantToPrintFormat_shouldGetPrint" classname="com.addressbook.AddressBookTest" time="0.16"/>
+  <system-out><![CDATA[FirstName  LastName  PhoneNumber  State  City  Address  Zipcode   
+Sunil		Sangale	9876543212	MH	Nagpur	aaa		55555
+]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
