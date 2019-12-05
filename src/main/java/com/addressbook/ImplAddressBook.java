@@ -13,10 +13,10 @@ public class ImplAddressBook implements IAddressBook {
     ArrayList<PersonModel> peoples = new ArrayList<>();
     AddressBookModel addressBookModel = new AddressBookModel();
 
-    public void addPerson(String firstName, String lastName, String phoneNum, String state, String city, String address, int zipcode) throws IOException {
-        if(fileName.length()!=0)
+    public int addPerson(String firstName, String lastName, String phoneNum, String state, String city, String address, int zipcode) throws IOException {
+        if (fileName.length() != 0)
             readFromJson(fileName);
-        if(!addressBookModel.getPersonModels().isEmpty())
+        if (!addressBookModel.getPersonModels().isEmpty())
             peoples.addAll(addressBookModel.getPersonModels());
 
         PersonModel personModel = new PersonModel();
@@ -35,6 +35,7 @@ public class ImplAddressBook implements IAddressBook {
         addressBookModel.setPersonModels(peoples);
 
         writeToJsonFile(addressBookModel);
+        return 1;
     }
 
     public void writeToJsonFile(AddressBookModel addressBookModel) throws IOException {
@@ -42,8 +43,25 @@ public class ImplAddressBook implements IAddressBook {
     }
 
     public void readFromJson(String fileName) throws IOException {
-        addressBookModel =  mapper.readValue(new File(fileName),AddressBookModel.class);
+        addressBookModel = mapper.readValue(new File(fileName), AddressBookModel.class);
     }
 
-
+    public int searchPersonByPerson(String phoneNum) throws IOException {
+        readFromJson(fileName);
+        String phoneNum1 = phoneNum;
+        boolean isFoundPerson = false;
+        for (int i = 0; i < addressBookModel.getPersonModels().size(); i++) {
+            phoneNum = addressBookModel.getPersonModels().get(i).getPhoneNum() ;
+            if (phoneNum1.equals(phoneNum)) {
+                isFoundPerson = true;
+                break;
+            }
+        }
+        if (isFoundPerson == true) {
+            System.out.print("Person exist");
+        } else {
+            System.out.print("Person Not Exist");
+        }
+        return 1;
+    }
 }
