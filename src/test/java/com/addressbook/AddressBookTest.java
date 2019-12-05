@@ -57,4 +57,11 @@ public class AddressBookTest {
         int result = implAddressBook.editForAddress("9876543212", "MH", "Nagpur", "aaa", 55555);
         Assert.assertEquals(1,result);
     }
+
+    @Test
+    public void givenAddressBook_wantToDeletePersonInformation_shouldGetDelete() throws IOException {
+        ImplAddressBook implAddressBook = new ImplAddressBook();
+        int result = implAddressBook.deletePerson("9898989898");
+        Assert.assertEquals(1,result);
+    }
 }

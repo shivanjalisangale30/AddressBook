@@ -84,4 +84,12 @@ public class ImplAddressBook implements IAddressBook {
         writeToJsonFile(addressBookModel);
         return 1;
     }
+
+    public int deletePerson(String phoneNum) throws IOException {
+        readFromJson(fileName);
+        int index = searchPersonByPhoneNumber(phoneNum);
+        addressBookModel.getPersonModels().remove(index);
+        writeToJsonFile(addressBookModel);
+        return 1;
+    }
 }

@@ -1,17 +1,6 @@
 {
   "personModels": [
     {
-      "firstName": "Shivanjali",
-      "lastName": "Sangale",
-      "phoneNum": "9898989898",
-      "address": {
-        "state": "Maharashtra",
-        "city": "Mumbai",
-        "address": "Dadar",
-        "zipcode": 123456
-      }
-    },
-    {
       "firstName": "Sunil",
       "lastName": "Sangale",
       "phoneNum": "9876543212",
@@ -26,6 +15,8 @@
       "firstName": "Harsh",
       "lastName": "Gurav",
       "phoneNum": null,
+      "address": {
+        "state": null,
         "city": null,
         "address": null,
         "zipcode": 0

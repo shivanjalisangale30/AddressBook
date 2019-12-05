@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.addressbook.AddressBookTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-12-05T11:36:57" hostname="admin1-desktop" time="0.17">
+<testsuite name="com.addressbook.AddressBookTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-12-05T11:55:30" hostname="admin1-desktop" time="0.163">
   <properties/>
-  <testcase name="givenAddressBook_wantToEditInformationForAddress" classname="com.addressbook.AddressBookTest" time="0.17"/>
+  <testcase name="givenAddressBook_wantToDeletePersonInformation_shouldGetDelete" classname="com.addressbook.AddressBookTest" time="0.163"/>
   <system-out><![CDATA[Person exist]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
