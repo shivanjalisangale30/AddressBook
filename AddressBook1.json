@@ -3,7 +3,7 @@
     {
       "firstName": "Shivanjali",
       "lastName": "Sangale",
-      "phoneNum": "9876543211",
+      "phoneNum": "9898989898",
       "address": {
         "state": "Maharashtra",
         "city": "Mumbai",
@@ -16,18 +16,16 @@
       "lastName": "Sangale",
       "phoneNum": "9876543212",
       "address": {
-        "state": "Rajasthan",
-        "city": "Aajmer",
-        "address": "aajmer",
-        "zipcode": 456789
+        "state": "MH",
+        "city": "Nagpur",
+        "address": "aaa",
+        "zipcode": 55555
       }
     },
     {
       "firstName": "Harsh",
       "lastName": "Gurav",
       "phoneNum": null,
-      "address": {
-        "state": null,
         "city": null,
         "address": null,
         "zipcode": 0

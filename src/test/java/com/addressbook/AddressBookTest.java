@@ -33,16 +33,28 @@ public class AddressBookTest {
     @Test
     public void givenAddressBook_wantToSearchExistPersonByPhoneNumber_shouldReturnTrue() throws IOException {
         ImplAddressBook implAddressBook = new ImplAddressBook();
-        int result = implAddressBook.searchPersonByPerson("9876543211");
-        Assert.assertEquals(1,result);
+        int result = implAddressBook.searchPersonByPhoneNumber("9876543211");
+        Assert.assertEquals(0,result);
     }
 
     @Test
     public void givenAddressBook_wantToSearchNotExistPersonByPhoneNumber_shouldReturnFalse() throws IOException {
         ImplAddressBook implAddressBook = new ImplAddressBook();
-        int result = implAddressBook.searchPersonByPerson("123456789");
+        int result = implAddressBook.searchPersonByPhoneNumber("123456789");
         Assert.assertFalse(String.valueOf(result),false);
     }
 
+    @Test
+    public void givenAddressBook_wantToEditInformationForPhoneNumber() throws IOException {
+        ImplAddressBook implAddressBook = new ImplAddressBook();
+        int result = implAddressBook.editForPhoneNumber("9876543211","9898989898");
+        Assert.assertEquals(1,result);
+    }
 
+    @Test
+    public void givenAddressBook_wantToEditInformationForAddress() throws IOException {
+        ImplAddressBook implAddressBook = new ImplAddressBook();
+        int result = implAddressBook.editForAddress("9876543212", "MH", "Nagpur", "aaa", 55555);
+        Assert.assertEquals(1,result);
+    }
 }
