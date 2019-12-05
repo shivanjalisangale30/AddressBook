@@ -1,0 +1,59 @@
+{
+  "personModels": [
+    {
+      "firstName": "Shivanjali",
+      "lastName": "Apte",
+      "phoneNum": "9874563215",
+      "address": {
+        "state": "Jammu",
+        "city": "Manali",
+        "address": "AAA",
+        "zipcode": 500123
+      }
+    },
+    {
+      "firstName": "Shivanjali",
+      "lastName": "Apte",
+      "phoneNum": "9874563215",
+      "address": {
+        "state": "Jammu",
+        "city": "Manali",
+        "address": "AAA",
+        "zipcode": 500123
+      }
+    },
+    {
+      "firstName": "Sunil",
+      "lastName": "Apte",
+      "phoneNum": "9874563215",
+      "address": {
+        "state": "Jammu",
+        "city": "Manali",
+        "address": "AAA",
+        "zipcode": 500123
+      }
+    },
+    {
+      "firstName": "Vivek",
+      "lastName": "Apte",
+      "phoneNum": "9874563215",
+      "address": {
+        "state": "Jammu",
+        "city": "Manali",
+        "address": "AAA",
+        "zipcode": 500123
+      }
+    },
+    {
+      "firstName": "Saeesh",
+      "lastName": "Apte",
+      "phoneNum": "9874563215",
+      "address": {
+        "state": "Jammu",
+        "city": "Manali",
+        "address": "AAA",
+        "zipcode": 500123
+      }
+    }
+  ]
+}

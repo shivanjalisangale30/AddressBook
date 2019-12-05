@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.addressbook.AddressBookTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-12-05T09:08:14" hostname="admin1-desktop" time="0.166">
+  <properties/>
+  <testcase name="givenAddressBook_wantToAddNewPersonInformation_shouldGetAdded" classname="com.addressbook.AddressBookTest" time="0.166"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
