@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 public class ImplAddressBook implements IAddressBook {
@@ -89,6 +91,48 @@ public class ImplAddressBook implements IAddressBook {
         readFromJson(fileName);
         int index = searchPersonByPhoneNumber(phoneNum);
         addressBookModel.getPersonModels().remove(index);
+        writeToJsonFile(addressBookModel);
+        return 1;
+    }
+
+    public <T extends Comparable<T>> int sortFunctionForPersonModel(String methodName) throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        readFromJson(fileName);
+        for (int i = 0; i < addressBookModel.getPersonModels().size() - 1; i++) {
+            for (int j = 0; j < addressBookModel.getPersonModels().size() - i - 1; j++) {
+                Class cls1 = addressBookModel.getPersonModels().get(j).getClass();
+                Method methodcall = cls1.getDeclaredMethod(methodName);
+                T value1 = (T) methodcall.invoke(addressBookModel.getPersonModels().get(j));
+                Class cls2 = addressBookModel.getPersonModels().get(j+1).getClass();
+                Method methodcall1 = cls2.getDeclaredMethod(methodName);
+                T value2 = (T) methodcall.invoke(addressBookModel.getPersonModels().get(j+1));
+                if (value1.compareTo(value2) > 0) {
+                    PersonModel tempObj = addressBookModel.getPersonModels().get(j);
+                    addressBookModel.getPersonModels().set(j, addressBookModel.getPersonModels().get(j + 1));
+                    addressBookModel.getPersonModels().set(j + 1, tempObj);
+                }
+            }
+        }
+        writeToJsonFile(addressBookModel);
+        return 1;
+    }
+
+    public <T extends Comparable<T>> int sortFunctionForAddressModel(String methodName) throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        readFromJson(fileName);
+        for (int i = 0; i < addressBookModel.getPersonModels().size() - 1; i++) {
+            for (int j = 0; j < addressBookModel.getPersonModels().size() - i - 1; j++) {
+                Class cls1 = addressBookModel.getPersonModels().get(j).getAddress().getClass();
+                Method methodcall = cls1.getDeclaredMethod(methodName);
+                T value1 = (T) methodcall.invoke(addressBookModel.getPersonModels().get(j).getAddress());
+                Class cls2 = addressBookModel.getPersonModels().get(j+1).getAddress().getClass();
+                Method methodcall1 = cls2.getDeclaredMethod(methodName);
+                T value2 = (T) methodcall.invoke(addressBookModel.getPersonModels().get(j+1).getAddress());
+                if (value1.compareTo(value2) > 0) {
+                    PersonModel tempObj = addressBookModel.getPersonModels().get(j);
+                    addressBookModel.getPersonModels().set(j, addressBookModel.getPersonModels().get(j + 1));
+                    addressBookModel.getPersonModels().set(j + 1, tempObj);
+                }
+            }
+        }
         writeToJsonFile(addressBookModel);
         return 1;
     }

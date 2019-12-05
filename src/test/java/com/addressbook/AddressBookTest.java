@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 public class AddressBookTest {
@@ -62,6 +63,20 @@ public class AddressBookTest {
     public void givenAddressBook_wantToDeletePersonInformation_shouldGetDelete() throws IOException {
         ImplAddressBook implAddressBook = new ImplAddressBook();
         int result = implAddressBook.deletePerson("9898989898");
+        Assert.assertEquals(1,result);
+    }
+
+    @Test
+    public void givenAddressBook_wantToSortByLastName_shouldGetSort() throws InvocationTargetException, NoSuchMethodException, IllegalAccessException, IOException {
+        ImplAddressBook implAddressBook = new ImplAddressBook();
+        int result = implAddressBook.sortFunctionForPersonModel("getLastName");
+        Assert.assertEquals(1,result);
+    }
+
+    @Test
+    public void givenAddressBook_wantToSortByZipCode_shouldGetSort() throws InvocationTargetException, NoSuchMethodException, IllegalAccessException, IOException {
+        ImplAddressBook implAddressBook = new ImplAddressBook();
+        int result = implAddressBook.sortFunctionForAddressModel("getZipcode");
         Assert.assertEquals(1,result);
     }
 }
