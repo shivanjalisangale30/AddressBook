@@ -10,7 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-public class ImplAddressBook  {
+public class ImplAddressBook {
 
     static ObjectMapper mapper = new ObjectMapper();
     ArrayList<PersonModel> peoples = new ArrayList<>();
@@ -48,8 +48,8 @@ public class ImplAddressBook  {
         addressBookModel = mapper.readValue(fileName, AddressBookModel.class);
     }
 
-    public int searchPersonByPhoneNumber(File fileName,String phoneNum) throws IOException {
-        readFromJson((fileName));
+    public int searchPersonByPhoneNumber(File fileName, String phoneNum) throws IOException {
+        readFromJson(fileName);
         int index = 0;
         String phoneNum1 = phoneNum;
         boolean isFoundPerson = false;
@@ -61,44 +61,68 @@ public class ImplAddressBook  {
                 break;
             }
         }
-        if (isFoundPerson == true) {
-            System.out.print("Person exist");
-        } else {
-            System.out.print("Person Not Exist");
-        }
         return index;
     }
 
-    public int editForPhoneNumber(File fileName ,String oldNumber, String newNumber) throws IOException {
+    public boolean editForPhoneNumber(File fileName, String oldNumber, String newNumber) throws IOException {
         readFromJson(fileName);
-        int index = searchPersonByPhoneNumber(fileName,oldNumber);
+        int index = searchPersonByPhoneNumber(fileName, oldNumber);
+        if (index == 0) {
+            String number = addressBookModel.getPersonModels().get(0).getPhoneNum();
+            if (number.equals(oldNumber)) {
+                addressBookModel.getPersonModels().get(index).setPhoneNum(newNumber);
+                writeToJsonFile(addressBookModel, fileName);
+            } else
+                return false;
+        }
         addressBookModel.getPersonModels().get(index).setPhoneNum(newNumber);
         writeToJsonFile(addressBookModel, fileName);
-        return 1;
+        return true;
     }
 
-
-    public int editForAddress(File fileName ,String phoneNum, String state, String city, String address, int zipcode) throws IOException {
+    public Boolean editForAddress(File fileName, String phoneNum, String state, String city, String address, int zipcode) throws IOException {
         readFromJson(fileName);
-        int index = searchPersonByPhoneNumber(fileName,phoneNum);
+        int index = searchPersonByPhoneNumber(fileName, phoneNum);
+        if (index == 0) {
+            String number = addressBookModel.getPersonModels().get(0).getPhoneNum();
+            if (number.equals(phoneNum)) {
+                addressBookModel.getPersonModels().get(index).getAddress().setState(state);
+                addressBookModel.getPersonModels().get(index).getAddress().setCity(city);
+                addressBookModel.getPersonModels().get(index).getAddress().setAddress(address);
+                addressBookModel.getPersonModels().get(index).getAddress().setZipcode(zipcode);
+                writeToJsonFile(addressBookModel, fileName);
+            } else
+                return false;
+        }
         addressBookModel.getPersonModels().get(index).getAddress().setState(state);
         addressBookModel.getPersonModels().get(index).getAddress().setCity(city);
         addressBookModel.getPersonModels().get(index).getAddress().setAddress(address);
         addressBookModel.getPersonModels().get(index).getAddress().setZipcode(zipcode);
-        writeToJsonFile(addressBookModel,fileName) ;
-        return 1;
+        writeToJsonFile(addressBookModel, fileName);
+        return true;
     }
 
-    public int deletePerson(File fileName ,String phoneNum) throws IOException {
+    public boolean deletePerson(File fileName, String phoneNum) throws IOException {
         readFromJson(fileName);
-        int index = searchPersonByPhoneNumber(fileName,phoneNum);
+        int index = searchPersonByPhoneNumber(fileName, phoneNum);
+        if (index == 0) {
+            String number = addressBookModel.getPersonModels().get(0).getPhoneNum();
+            if (number.equals(phoneNum)) {
+                addressBookModel.getPersonModels().remove(index);
+                writeToJsonFile(addressBookModel, fileName);
+            } else
+                return false;
+        }
         addressBookModel.getPersonModels().remove(index);
-        writeToJsonFile(addressBookModel,fileName );
-        return 1;
+        writeToJsonFile(addressBookModel, fileName);
+        return true;
     }
 
-    public <T extends Comparable<T>> int sortFunctionForPersonModel(File fileName , String methodName) throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        readFromJson(fileName);
+    public <T extends Comparable<T>> boolean sortFunctionForPersonModel(File fileName, String methodName) throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        if (fileName.length() == 0)
+            return false;
+        else
+            readFromJson(fileName);
         for (int i = 0; i < addressBookModel.getPersonModels().size() - 1; i++) {
             for (int j = 0; j < addressBookModel.getPersonModels().size() - i - 1; j++) {
                 Class cls1 = addressBookModel.getPersonModels().get(j).getClass();
@@ -115,11 +139,14 @@ public class ImplAddressBook  {
             }
         }
         writeToJsonFile(addressBookModel, fileName);
-        return 1;
+        return true;
     }
 
-    public <T extends Comparable<T>> int sortFunctionForAddressModel(File fileName ,String methodName) throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        readFromJson(fileName);
+    public <T extends Comparable<T>> boolean sortFunctionForAddressModel(File fileName, String methodName) throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        if (fileName.length() == 0)
+            return false;
+        else
+            readFromJson(fileName);
         for (int i = 0; i < addressBookModel.getPersonModels().size() - 1; i++) {
             for (int j = 0; j < addressBookModel.getPersonModels().size() - i - 1; j++) {
                 Class cls1 = addressBookModel.getPersonModels().get(j).getAddress().getClass();
@@ -135,14 +162,17 @@ public class ImplAddressBook  {
                 }
             }
         }
-        writeToJsonFile(addressBookModel,fileName);
-        return 1;
+        writeToJsonFile(addressBookModel, fileName);
+        return true;
     }
 
-    public int printInFormat(File fileName ,String nameOfAddressBook) throws IOException {
-        readFromJson(fileName);
+    public boolean printInFormat(File fileName) throws IOException {
+        if (fileName.length() == 0)
+            return false;
+        else
+            readFromJson(fileName);
         System.out.println("FirstName  LastName  PhoneNumber  State  City  Address  Zipcode   ");
-        for (int i = 0; i < addressBookModel.getPersonModels().size() ; i++) {
+        for (int i = 0; i < addressBookModel.getPersonModels().size(); i++) {
             System.out.println(addressBookModel.getPersonModels().get(i).getFirstName() +
                     "\t\t" + addressBookModel.getPersonModels().get(i).getLastName() +
                     "\t" + addressBookModel.getPersonModels().get(i).getPhoneNum() +
@@ -151,40 +181,38 @@ public class ImplAddressBook  {
                     "\t" + addressBookModel.getPersonModels().get(i).getAddress().getAddress() +
                     "\t\t" + addressBookModel.getPersonModels().get(i).getAddress().getZipcode());
         }
-        return 1;
+        return true;
     }
 
 
-    public int addressBookCreate(String newAddressBook) throws IOException {
-
+    public boolean addressBookCreate(String newAddressBook) throws IOException {
         File file = new File("/home/admin1/Desktop/AddressBook/" + newAddressBook + ".json");
         boolean flag = file.createNewFile();
         if (flag) {
-            System.out.println("File has been created successfully...");
-        } else {
-            System.out.println("File is already exist");
-        }
-        return 1;
+            return true;
+        } else
+            return false;
     }
 
-    public int addressBookOpen(String openAddressBook) throws IOException {
+    public boolean addressBookOpen(String openAddressBook) throws IOException {
         Files.list(Paths.get("/home/admin1/Desktop/AddressBook")).filter(path -> path.toString().endsWith(".json")).forEach(System.out::println);
         File f = new File("/home/admin1/Desktop/AddressBook/" + openAddressBook + ".json");
         if (f.exists()) {
-            System.out.println("File Exist");
-        } else {
-            System.out.println("File does not exist");
-        }
-        return 1;
+            return true;
+        } else
+            return false;
     }
 
-    public int saveData(File fileName) throws IOException {
-        editForAddress(fileName,"022-2456987", "Punjab", "chndigad", "Chandigad", 111111);
-        writeToJsonFile(addressBookModel,fileName );
-        return 1;
+    public boolean saveData(File fileName) throws IOException {
+        if (fileName.getClass().getName().endsWith(".json") && fileName.canRead()== true){
+                writeToJsonFile(addressBookModel, fileName);
+                return true;
+            }
+         else
+             return false;
     }
 
-    public int saveAs(File fileName , String nameOfAddressBook) throws IOException {
+    public int saveAs(File fileName, String nameOfAddressBook) throws IOException {
         readFromJson(fileName);
         File file = new File("/home/admin1/Desktop/AddressBook/" + nameOfAddressBook + ".json");
         boolean flag = file.createNewFile();
@@ -193,7 +221,7 @@ public class ImplAddressBook  {
         } else {
             System.out.println("File is already exist");
         }
-        writeToJsonFile(addressBookModel,file);
+        writeToJsonFile(addressBookModel, file);
         return 1;
     }
 }

@@ -1,0 +1,48 @@
+{
+  "personModels": [
+    {
+      "firstName": "Ruhi",
+      "lastName": "Walke",
+      "phoneNum": "98745632159",
+      "address": {
+        "state": "Delhi",
+        "city": "New Delhi",
+        "address": "dddd",
+        "zipcode": 363636
+      }
+    },
+    {
+      "firstName": "Silkesh",
+      "lastName": "Sanas",
+      "phoneNum": "983214568",
+      "address": {
+        "state": "Bihar",
+        "city": "Patana",
+        "address": "Patana",
+        "zipcode": 365982
+      }
+    },
+    {
+      "firstName": "Sunil",
+      "lastName": "Sangale",
+      "phoneNum": "7678077134",
+      "address": {
+        "state": "Goa",
+        "city": "Goa",
+        "address": "Goa",
+        "zipcode": 456987
+      }
+    },
+    {
+      "firstName": "Harshada",
+      "lastName": "Pawar",
+      "phoneNum": "896547256",
+      "address": {
+        "state": "Kerala",
+        "city": "kkk",
+        "address": "Kkk",
+        "zipcode": 896589
+      }
+    }
+  ]
+}
