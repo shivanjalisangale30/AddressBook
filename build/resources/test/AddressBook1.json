@@ -1,0 +1,26 @@
+{
+  "personModels": [
+    {
+      "firstName": "Saeesh",
+      "lastName": "Phatak",
+      "phoneNum": "123456789",
+      "address": {
+        "state": "Punjab",
+        "city": "chndigad",
+        "address": "Chandigad",
+        "zipcode": 111111
+      }
+    },
+    {
+      "firstName": "Jugraj",
+      "lastName": "Chakane",
+      "phoneNum": "9898989898",
+      "address": {
+        "state": "Maharashtra",
+        "city": "Mumbai",
+        "address": "Dadar",
+        "zipcode": 789654
+      }
+    }
+  ]
+}
