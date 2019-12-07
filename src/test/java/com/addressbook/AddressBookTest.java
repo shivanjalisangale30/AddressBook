@@ -323,21 +323,22 @@ public class AddressBookTest {
     public void givenAddressBook_wantToSaveDataWhenProperFileContainData_sholudGetSaved() {
         ImplAddressBook implAddressBook = new ImplAddressBook();
         try {
-             boolean result = implAddressBook.saveData(Addressbook1);
-             Assert.assertTrue(result);
+            boolean result = implAddressBook.saveData(Addressbook1);
+            Assert.assertTrue(result);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     @Test
-    public void givenAddressBook_wantToSaveDataWhenProperFileContainNullData_sholudGetSaved() {
+    public void givenAddressBook_wantToSaveDataWhenProperFileContainNullData_sholudReturnFalse() {
         ImplAddressBook implAddressBook = new ImplAddressBook();
         try {
             boolean result = implAddressBook.saveData(Addressbook2);
             Assert.assertFalse(result);
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -345,12 +346,18 @@ public class AddressBookTest {
     @Test
     public void givenAddressBook_OptionSaveAs_shouldGetChangedFileType() {
         ImplAddressBook implAddressBook = new ImplAddressBook();
-        int reslt = 0;
         try {
-            reslt = implAddressBook.saveAs(Addressbook1, "AddressBook3");
+            boolean result = implAddressBook.saveAs(Addressbook1, "AddressBook3");
+            Assert.assertTrue(true);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Assert.assertEquals(1, reslt);
+    }
+
+    @Test
+    public void givenAddressBook_OptionGivenExit_shouldReturnTrue() throws IOException {
+        ImplAddressBook implAddressBook = new ImplAddressBook();
+        boolean result = implAddressBook.exit(Addressbook2);
+        Assert.assertTrue(true);
     }
 }

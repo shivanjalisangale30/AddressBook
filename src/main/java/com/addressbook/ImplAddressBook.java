@@ -3,7 +3,6 @@ package com.addressbook;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -197,16 +196,25 @@ public class ImplAddressBook {
         return false;
     }
 
-    public int saveAs(File fileName, String nameOfAddressBook) throws IOException {
+    public boolean saveAs(File fileName, String nameOfAddressBook) throws IOException {
         readFromJson(fileName);
         File file = new File("/home/admin1/Desktop/AddressBook/" + nameOfAddressBook + ".json");
         boolean flag = file.createNewFile();
         if (flag) {
-            System.out.println("File has been created successfully...");
-        } else {
-            System.out.println("File is already exist");
+            writeToJsonFile(addressBookModel, file);
+            return true;
         }
-        writeToJsonFile(addressBookModel, file);
-        return 1;
+        return false;
+    }
+
+
+    public boolean exit(File fileName) throws IOException {
+        if (fileName.getAbsolutePath().endsWith(".json")) {
+            if (fileName.length() != 0) {
+                if (addressBookModel instanceof AddressBookModel)
+                    return true;
+            }
+        }
+        return false;
     }
 }
