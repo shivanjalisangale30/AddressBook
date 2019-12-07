@@ -51,7 +51,7 @@ public class ImplAddressBook {
 
     public int searchPersonByPhoneNumber(File fileName, String phoneNum) throws IOException {
         readFromJson(fileName);
-        int index = 0;
+        int index = -1;
         String phoneNum1 = phoneNum;
         boolean isFoundPerson = false;
         for (int i = 0; i < addressBookModel.getPersonModels().size(); i++) {
@@ -68,13 +68,8 @@ public class ImplAddressBook {
     public boolean editForPhoneNumber(File fileName, String oldNumber, String newNumber) throws IOException {
         readFromJson(fileName);
         int index = searchPersonByPhoneNumber(fileName, oldNumber);
-        if (index == 0) {
-            String number = addressBookModel.getPersonModels().get(0).getPhoneNum();
-            if (number.equals(oldNumber)) {
-                addressBookModel.getPersonModels().get(index).setPhoneNum(newNumber);
-                writeToJsonFile(addressBookModel, fileName);
-            } else
-                return false;
+        if (index == -1) {
+            return false;
         }
         addressBookModel.getPersonModels().get(index).setPhoneNum(newNumber);
         writeToJsonFile(addressBookModel, fileName);
@@ -84,16 +79,8 @@ public class ImplAddressBook {
     public Boolean editForAddress(File fileName, String phoneNum, String state, String city, String address, int zipcode) throws IOException {
         readFromJson(fileName);
         int index = searchPersonByPhoneNumber(fileName, phoneNum);
-        if (index == 0) {
-            String number = addressBookModel.getPersonModels().get(0).getPhoneNum();
-            if (number.equals(phoneNum)) {
-                addressBookModel.getPersonModels().get(index).getAddress().setState(state);
-                addressBookModel.getPersonModels().get(index).getAddress().setCity(city);
-                addressBookModel.getPersonModels().get(index).getAddress().setAddress(address);
-                addressBookModel.getPersonModels().get(index).getAddress().setZipcode(zipcode);
-                writeToJsonFile(addressBookModel, fileName);
-            } else
-                return false;
+        if (index == -1) {
+            return false;
         }
         addressBookModel.getPersonModels().get(index).getAddress().setState(state);
         addressBookModel.getPersonModels().get(index).getAddress().setCity(city);
@@ -106,13 +93,8 @@ public class ImplAddressBook {
     public boolean deletePerson(File fileName, String phoneNum) throws IOException {
         readFromJson(fileName);
         int index = searchPersonByPhoneNumber(fileName, phoneNum);
-        if (index == 0) {
-            String number = addressBookModel.getPersonModels().get(0).getPhoneNum();
-            if (number.equals(phoneNum)) {
-                addressBookModel.getPersonModels().remove(index);
-                writeToJsonFile(addressBookModel, fileName);
-            } else
-                return false;
+        if (index == -1) {
+            return false;
         }
         addressBookModel.getPersonModels().remove(index);
         writeToJsonFile(addressBookModel, fileName);

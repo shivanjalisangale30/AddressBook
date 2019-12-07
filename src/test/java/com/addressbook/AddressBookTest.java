@@ -15,7 +15,6 @@ public class AddressBookTest {
     File Addressbook1 = new File("/home/admin1/Desktop/AddressBook/AddressBook1.json");
     File Addressbook2 = new File("/home/admin1/Desktop/AddressBook/AddressBook2.json");
 
-
     @Test
     public void givenAddressBook_wantToAddNewPersonInformation_shouldGetAdded() {
         ImplAddressBook implAddressBook = new ImplAddressBook();
