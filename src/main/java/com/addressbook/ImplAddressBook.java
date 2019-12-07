@@ -3,6 +3,7 @@ package com.addressbook;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -204,12 +205,14 @@ public class ImplAddressBook {
     }
 
     public boolean saveData(File fileName) throws IOException {
-        if (fileName.getClass().getName().endsWith(".json") && fileName.canRead()== true){
+        if (fileName.getAbsolutePath().endsWith(".json")) {
+            if (fileName.length() != 0) {
+                readFromJson(fileName);
                 writeToJsonFile(addressBookModel, fileName);
                 return true;
             }
-         else
-             return false;
+        }
+        return false;
     }
 
     public int saveAs(File fileName, String nameOfAddressBook) throws IOException {

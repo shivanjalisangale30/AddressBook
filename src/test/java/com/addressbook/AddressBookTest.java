@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
@@ -13,6 +14,7 @@ public class AddressBookTest {
 
     File Addressbook1 = new File("/home/admin1/Desktop/AddressBook/AddressBook1.json");
     File Addressbook2 = new File("/home/admin1/Desktop/AddressBook/AddressBook2.json");
+
 
     @Test
     public void givenAddressBook_wantToAddNewPersonInformation_shouldGetAdded() {
@@ -308,7 +310,7 @@ public class AddressBookTest {
     }
 
     @Test
-    public void openAddressBook_whenAddressBookDoesNotExist_sholdGetOpen() {
+    public void openAddressBook_whenAddressBookDoesNotExist_sholdReturnFalse() {
         ImplAddressBook implAddressBook = new ImplAddressBook();
         try {
             boolean result = implAddressBook.addressBookOpen("addressBook");
@@ -318,8 +320,8 @@ public class AddressBookTest {
         }
     }
 
-        @Test
-    public void givenAddressBook_wantToSaveDataWhenProper_sholudGetSaved() {
+    @Test
+    public void givenAddressBook_wantToSaveDataWhenProperFileContainData_sholudGetSaved() {
         ImplAddressBook implAddressBook = new ImplAddressBook();
         try {
              boolean result = implAddressBook.saveData(Addressbook1);
@@ -328,17 +330,28 @@ public class AddressBookTest {
             e.printStackTrace();
         }
     }
+    @Test
+    public void givenAddressBook_wantToSaveDataWhenProperFileContainNullData_sholudGetSaved() {
+        ImplAddressBook implAddressBook = new ImplAddressBook();
+        try {
+            boolean result = implAddressBook.saveData(Addressbook2);
+            Assert.assertFalse(result);
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-//
-//    @Test
-//    public void givenAddressBook_OptionSaveAs_shouldGetChangedFileType() {
-//        ImplAddressBook implAddressBook = new ImplAddressBook();
-//        int reslt = 0;
-//        try {
-//            reslt = implAddressBook.saveAs(Addressbook1, "AddressBook3");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        Assert.assertEquals(1, reslt);
-//    }
+    @Test
+    public void givenAddressBook_OptionSaveAs_shouldGetChangedFileType() {
+        ImplAddressBook implAddressBook = new ImplAddressBook();
+        int reslt = 0;
+        try {
+            reslt = implAddressBook.saveAs(Addressbook1, "AddressBook3");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Assert.assertEquals(1, reslt);
+    }
 }

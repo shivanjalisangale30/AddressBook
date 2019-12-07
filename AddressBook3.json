@@ -1,25 +1,47 @@
 {
   "personModels": [
     {
-      "firstName": "Harsh",
-      "lastName": "Gurav",
-      "phoneNum": "022-2456987",
+      "firstName": "Harshada",
+      "lastName": "Pawar",
+      "phoneNum": "896547256",
       "address": {
-        "state": "Punjab",
-        "city": "chndigad",
-        "address": "Chandigad",
-        "zipcode": 111111
+        "state": "Kerala",
+        "city": "kkk",
+        "address": "Kkk",
+        "zipcode": 896589
       }
     },
     {
-      "firstName": "Saeesh",
-      "lastName": "Phatak",
-      "phoneNum": "9898989898",
+      "firstName": "Silkesh",
+      "lastName": "Sanas",
+      "phoneNum": "983214568",
       "address": {
-        "state": "Hydrabad",
-        "city": "Hydrabad",
-        "address": "aaa",
-        "zipcode": 456456
+        "state": "Bihar",
+        "city": "Patana",
+        "address": "Patana",
+        "zipcode": 365982
+      }
+    },
+    {
+      "firstName": "Ruhi",
+      "lastName": "Walke",
+      "phoneNum": "98745632159",
+      "address": {
+        "state": "UP",
+        "city": "Banaras",
+        "address": null,
+        "zipcode": 5698745
+      }
+    },
+    {
+      "firstName": "Harshada",
+      "lastName": "Pawar",
+      "phoneNum": "896547256",
+      "address": {
+        "state": "Kerala",
+        "city": "kkk",
+        "address": "Kkk",
+        "zipcode": 896589
       }
     }
   ]
